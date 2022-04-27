@@ -44,7 +44,7 @@ public class ListaClub {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Main">
+    //<editor-fold defaultstate="collapsed" desc="Main">
     public static void main(String[] args) {
         ListaClub listaClub = ListaClub.crearListaClub();
 
@@ -55,6 +55,7 @@ public class ListaClub {
         listaClub.agregarSocio(new Socio(5));
 
         listaClub.mostrarClub();
+
 
         boolean estaSocio5 = listaClub.esta(new Socio(5));
         System.out.println("estaSocio5 = " + estaSocio5);
@@ -67,10 +68,64 @@ public class ListaClub {
         Socio ultimoSocio = listaClub.ultimoSocio();
         System.out.println("ultimoSocio = " + ultimoSocio);
 
-    }
-    //</editor-fold>
+        System.out.println("Segundo Club");
 
-    //<editor-fold desc="Métodos">
+        ListaClub listaClub2 = ListaClub.crearListaClub();
+        listaClub2.agregarSocio(new Socio(3));
+        listaClub2.agregarSocio(new Socio(4));
+        listaClub2.agregarSocio(new Socio(5));
+
+        listaClub2.mostrarClub();
+
+        boolean esSocioComun5 = listaClub.esSocioComun(listaClub2,new Socio(5));
+        System.out.println("esSocioComun5 = " + esSocioComun5);
+
+        boolean esSocioComun4 = listaClub2.esSocioComun(listaClub,new Socio(4));
+        System.out.println("esSocioComun4 = " + esSocioComun4);
+
+        boolean esSocioComun2 = listaClub.esSocioComun(listaClub2,new Socio(2));
+        System.out.println("esSocioComun2 = " + esSocioComun2);
+
+        boolean esSocioComun1 = listaClub2.esSocioComun(listaClub,new Socio(1));
+        System.out.println("esSocioComun1 = " + esSocioComun1);
+
+        ListaClub nuevoClub = unirClubes(listaClub,listaClub2);
+
+        System.out.println("El club unido es: ");
+        if (nuevoClub != null)
+            nuevoClub.mostrarClub();
+    }
+
+
+    // <editor-fold defaultstate="collapsed" desc="Métodos de Usuario">
+    public static ListaClub unirClubes(ListaClub club1, ListaClub club2) {
+        ListaClub clubUnido = ListaClub.crearListaClub();
+        Nodo aux1 = club1.primero;
+        Nodo aux2 = club2.primero;
+        clubUnido.primero = aux1;
+
+        if (aux1 == null && aux2 == null)
+            return null;
+
+
+        if (aux1 == null) {
+            clubUnido.primero = aux2;
+            return clubUnido;
+        }else if(aux2 == null){
+            return clubUnido;
+        }
+
+
+        while (aux1.getSiguiente() != null)
+            aux1 = aux1.getSiguiente();
+
+        aux1.setSiguiente(aux2);
+
+        return clubUnido;
+    }
+    // </editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Métodos de Clase">
     public void agregarSocio(Socio socio) {
         if (this.primero == null){
             this.primero = new Nodo(socio);
@@ -84,9 +139,7 @@ public class ListaClub {
     }
 
     public boolean estaVacio() {
-        if (this.primero == null)
-            return true;
-        else return false;
+        return this.primero == null;
     }
 
     public int cantidad() {
@@ -135,6 +188,28 @@ public class ListaClub {
             aux = aux.getSiguiente();
         }
         System.out.println(" }");
+    }
+
+    public boolean esSocioComun(ListaClub otroClub, Socio socio) {
+        Nodo aux1 = this.primero;
+        Nodo aux2 = otroClub.primero;
+        boolean estaEnUno = false;
+        while (aux1 != null){
+            if (aux1.getSocio().equals(socio)) {
+                estaEnUno = true;
+                break;
+            }
+            aux1 = aux1.getSiguiente();
+        }
+        if (!estaEnUno)
+            return false;
+        
+        while (aux2 != null) {
+            if (aux2.getSocio().equals(socio))
+                return true;
+            aux2 = aux2.getSiguiente();
+        }
+        return false;
     }
     //</editor-fold>
 

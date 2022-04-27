@@ -2,6 +2,7 @@ package clases;
 
 public class ListaClub {
 
+    //<editor-fold desc="Clase Nodo">
     public class Nodo {
         private Socio socio;
         private Nodo siguiente;
@@ -27,18 +28,49 @@ public class ListaClub {
             this.siguiente = siguiente;
         }
     }
+    //</editor-fold>
 
-
+    //Variables de clase
     private Nodo primero;
 
+    //<editor-fold desc="Constructor">
     private ListaClub () {
         this.primero = null;
     }
 
+
     public static ListaClub crearListaClub(){
         return new ListaClub();
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Main">
+    public static void main(String[] args) {
+        ListaClub listaClub = ListaClub.crearListaClub();
+
+        listaClub.agregarSocio(new Socio(1));
+        listaClub.agregarSocio(new Socio(2));
+        listaClub.agregarSocio(new Socio(3));
+        listaClub.agregarSocio(new Socio(4));
+        listaClub.agregarSocio(new Socio(5));
+
+        listaClub.mostrarClub();
+
+        boolean estaSocio5 = listaClub.esta(new Socio(5));
+        System.out.println("estaSocio5 = " + estaSocio5);
+        boolean estaSocio10 = listaClub.esta(new Socio(10));
+        System.out.println("estaSocio10 = " + estaSocio10);
+
+        boolean esClubVacio = listaClub.estaVacio();
+        System.out.println("esClubVacio = " + esClubVacio);
+
+        Socio ultimoSocio = listaClub.ultimoSocio();
+        System.out.println("ultimoSocio = " + ultimoSocio);
+
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Métodos">
     public void agregarSocio(Socio socio) {
         if (this.primero == null){
             this.primero = new Nodo(socio);
@@ -104,4 +136,6 @@ public class ListaClub {
         }
         System.out.println(" }");
     }
+    //</editor-fold>
+
 }

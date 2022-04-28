@@ -1,8 +1,8 @@
-package clases;
+package Club;
 
 public class ListaClub {
 
-    //<editor-fold desc="Clase Nodo">
+    //<editor-fold defaultstate="collapsed" desc="Clase Nodo">
     public class Nodo {
         private Socio socio;
         private Nodo siguiente;
@@ -33,7 +33,7 @@ public class ListaClub {
     //Variables de clase
     private Nodo primero;
 
-    //<editor-fold desc="Constructor">
+    //<editor-fold defaultstate="collapsed" desc="Constructor">
     private ListaClub () {
         this.primero = null;
     }
@@ -95,7 +95,7 @@ public class ListaClub {
         if (nuevoClub != null)
             nuevoClub.mostrarClub();
     }
-
+    // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="Métodos de Usuario">
     public static ListaClub unirClubes(ListaClub club1, ListaClub club2) {

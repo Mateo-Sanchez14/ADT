@@ -1,4 +1,4 @@
-package clases;
+package Club;
 
 import java.util.Objects;
 
@@ -20,8 +20,7 @@ public class Socio {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Socio)) return false;
-        Socio socio = (Socio) o;
+        if (!(o instanceof Socio socio)) return false;
         return getNumero() == socio.getNumero();
     }
 

@@ -1,4 +1,4 @@
-package Club;
+package club;
 
 public class ListaClub {
 
